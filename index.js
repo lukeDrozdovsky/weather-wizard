@@ -46,7 +46,7 @@ app.get("/", async (req, res) => {
     const userInput = req.body.cities
     try {
       const cities = await searchCity(userInput);
-      console.log(cities); 
+      //console.log(cities); 
       res.render("index.ejs", { cities: cities });
     } catch (error) {
       console.error("Error getting City data:", error);

@@ -3,16 +3,16 @@
     <div class="container">
         <div class="sub-container">
             <form action="/forecast" method="post">
-                <label for="city-input">Wpisz nazwę miasta:</label><br>
-                <input type="text" id="city-input" name="city" placeholder="Nazwa miasta" autocomplete="off" oninput="onCityInput(event)">
-                <!-- Miejsce na dynamiczne sugestie -->
+                <label for="city-input">Enter city name:</label><br>
+                <input type="text" id="city-input" name="city" placeholder="City name" autocomplete="off" oninput="onCityInput(event)">
+                <!-- Space for dynamic suggestions -->
                 <ul id="suggestions"></ul>
-                <!-- Pola ukryte do przechowywania współrzędnych -->
+                <!-- Hidden fields to store coordinates -->
                 <input type="hidden" id="latitude" name="latitude">
                 <input type="hidden" id="longitude" name="longitude">
                 <br>
                 <button type="submit">Forecast Now</button>
-              </form>
+            </form>
         </div>
     </div>
 </div>
