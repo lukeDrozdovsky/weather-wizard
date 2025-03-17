@@ -3,15 +3,18 @@
     <div class="container">
         <div class="sub-container">
             <form action="/forecast" method="post">
-                <label for="city-input">Enter city name:</label><br>
-                <input type="text" id="city-input" name="city" placeholder="City name" autocomplete="off" oninput="onCityInput(event)">
+                <label for="city-input"><h2>Enter city name:</h2></label>
+                <p> <% if (locals.message) { %>
+                    <%= message %>
+                <% } %></p>
+                <input type="search" id="city-input" name="city" placeholder="City name" autocomplete="off" oninput="onCityInput(event)">
                 <!-- Space for dynamic suggestions -->
                 <ul id="suggestions"></ul>
                 <!-- Hidden fields to store coordinates -->
                 <input type="hidden" id="latitude" name="latitude">
                 <input type="hidden" id="longitude" name="longitude">
                 <br>
-                <button type="submit">Forecast Now</button>
+                <button type="submit"><p>Forecast Now</p></button>
             </form>
         </div>
     </div>

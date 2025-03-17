@@ -70,7 +70,7 @@ app.get('/search-city', async (req, res) => {
 app.post('/forecast', async (req, res) => {
     const { city, latitude, longitude } = req.body;
     if (!latitude || !longitude) {
-      return res.send("Brak współrzędnych dla wybranego miasta.");
+      return res.render("index.ejs", {message: "No coordinates for chosen city."});
     }
     try {
       const weatherData = await getWeather(latitude, longitude);

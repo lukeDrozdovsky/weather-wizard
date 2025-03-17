@@ -5,15 +5,24 @@ body {
     min-height: 100vh;
     height: 100%; 
 }
+
 nav {
     width: 100%;
 }
+
 h1 {
     padding-right: 10px;
     font-family: "Henny Penny", system-ui;
     font-weight: 400;
     font-style: normal;
 
+}
+
+h2 {
+    font-family: "Marhey", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
 }
 .logo {
     width: 10vh;
@@ -27,6 +36,19 @@ nav ul {
     flex-direction: row;
 }
 
+input {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+p {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+     font-style: normal;
+}
 a {
     color: white;
     text-decoration: none;
@@ -48,6 +70,7 @@ nav li.right {
     padding-right: 10px;
     padding-left: 10px;
 }
+
 button {
     text-align: center;
     background-color: white;
@@ -69,19 +92,20 @@ button {
     }
 }
 
-
 button:hover {
     background-color: rgb(35, 92, 177);
 }
 
 .grid-container {
-
+    display: grid;
 }
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .sub-container {
     color: white;
     background-color: rgb(35, 82, 152);
@@ -91,6 +115,7 @@ button:hover {
     border-radius: 5px;
 
 }
+
 footer {
     position: fixed;
     left: 0;
@@ -111,13 +136,42 @@ footer {
     margin: 0;
     position: absolute;
     background: #fff;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
     
-  }
-  #suggestions li {
+}
+#suggestions li {
     padding: 5px 10px;
     cursor: pointer;
     color: black;
-  }
-  #suggestions li:hover {
-    background: #697add;
-  }
+    list-style: none;
+}
+#suggestions li:hover {
+    background: rgb(62, 135, 243);
+}
+
+#city-input {
+    border: 1px solid #ccc;   
+    padding: 8px;            
+    border-radius: 3px;      
+    font-size: 14px;        
+    width: 250px; 
+}
+
+#city-input::placeholder {
+    color: #999;
+}
+
+#city-input:focus {
+    border-color: #007BFF;
+    outline: none;           
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none !important;
+}
