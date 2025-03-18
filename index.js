@@ -30,7 +30,7 @@ async function getWeather(latitude, longitude) {
         params: {
           latitude,
           longitude,
-          hourly: 'temperature_2m,precipitation'
+          hourly: 'temperature_2m,precipitation,weather_code,windspeed_10m,winddirection_10m'
         }
       });
       return response.data;
@@ -39,6 +39,28 @@ async function getWeather(latitude, longitude) {
       throw error;
     }
   }
+  function dateAndTime(time) {
+    const dateString = time;
+        //console.log(dateString);
+        // Tworzymy obiekt Date
+        const dateObj = new Date(dateString);
+  
+        // Opcje do wyświetlenia dnia tygodnia w języku angielskim
+        const options = { weekday: 'long' };
+        const dayOfWeekEN = dateObj.toLocaleDateString('en-US', options);
+  
+        // Rozdzielenie daty (rok-miesiąc-dzień) na osobną zmienną
+        const year = dateObj.getFullYear();
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const dateOnly = `${day}-${month}-${year}`;
+  
+        // Rozdzielenie godziny (hh:mm) na osobną zmienną
+        const hours = String(dateObj.getHours()).padStart(2, '0');
+        const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+        const timeOnly = `${hours}:${minutes}`;
+        return { date: dateOnly, time: timeOnly, dayOfWeek: dayOfWeekEN }
+  } 
 
 app.set('view engine', 'ejs');
 
@@ -66,7 +88,10 @@ app.post('/forecast', async (req, res) => {
     }
     try {
       const weatherData = await getWeather(latitude, longitude);
-      res.render("forecast.ejs", { city, weatherData });
+      //var date = dateAndTime(weatherData.hourly.time);
+      //console.log(weatherData.hourly.time);
+      //console.log(date);
+      res.render("forecast.ejs", { city, weatherData, dateAndTime});
     } catch (error) {
       res.send("Wystąpił błąd przy pobieraniu danych pogodowych.");
     }

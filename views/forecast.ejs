@@ -5,12 +5,13 @@
             <h2>Weather Forecast for <%= city %></h2>
             <% if (weatherData.hourly && weatherData.hourly.time) { %>
               <ul>
-                <% weatherData.hourly.time.forEach((time, index) => { %>
+                <% weatherData.hourly.time.forEach((time, index) => { 
+                     const newDate = dateAndTime(time); %>
                   <li>
-                    <strong><%= time %></strong> - Temperature: <%= weatherData.hourly.temperature_2m[index] %>°C, Precipitation: <%= weatherData.hourly.precipitation[index] %> mm
+                    <strong><%= newDate.dayOfWeek %></strong> - Temperature: <%= weatherData.hourly.temperature_2m[index] %>°C, Precipitation: <%= weatherData.hourly.precipitation[index] %> mm<br>
+                    Date: <%= newDate.date %>, Time: <%= newDate.time %>
                   </li>
                 <% }); %>
-              </ul>
             <% } else { %>
               <p>No weather data available.</p>
             <% } %>

@@ -35,6 +35,9 @@ nav ul {
     display: flex;
     flex-direction: row;
 }
+nav li {
+    margin: 0px;
+}
 
 input {
     font-family: "Outfit", sans-serif;
@@ -55,20 +58,20 @@ a {
     font-weight: bold;
     display: flex;
     text-align: center;
+    margin: 0px;
     
 }
 
-nav li.right {
+/* nav li.right {
     margin-left: auto;
-}
+} */
 
 .nav-element {
     background-color: rgb(21, 74, 154);
     display: flex;
     align-items: center;
     height: 70px;
-    padding-right: 10px;
-    padding-left: 10px;
+    margin: 0px;
 }
 
 button {
@@ -77,6 +80,7 @@ button {
     height: 70px;
     padding-right: 10px;
     padding-left: 10px;
+    margin: 0px;
     display: flex;
     align-items: center;
     background: none;
