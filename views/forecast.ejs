@@ -1,17 +1,40 @@
 <%- include("partials/header.ejs") %>
 <div class="grid-container">
-    <div class="container">
+    <div class="grid-container">
+
         <div class="sub-container">
-            <h2>Weather Forecast for <%= city %></h2>
-            <% if (weatherData.hourly && weatherData.hourly.time) { %>
-              <ul>
-                <% weatherData.hourly.time.forEach((time, index) => { 
-                     const newDate = dateAndTime(time); %>
-                  <li>
-                    <strong><%= newDate.dayOfWeek %></strong> - Temperature: <%= weatherData.hourly.temperature_2m[index] %>°C, Precipitation: <%= weatherData.hourly.precipitation[index] %> mm<br>
-                    Date: <%= newDate.date %>, Time: <%= newDate.time %>
-                  </li>
-                <% }); %>
+          
+          <div class="container">
+            <div class="side-info-bar">
+              <h2><img src="images/location-pin.svg" class="location-pin" alt="location-pin"><%= city %></h2>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="side-info-bar">
+              <% if (locals.weatherData) { %>
+                <p><img src="images/<%= utils.getWeatherDescription(weatherData.hourly.weather_code[0]).icon %>" class="weather-icon">
+                  <%= utils.getWeatherDescription(weatherData.hourly.weather_code[0]).description %></p>
+              <% } %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sub-container">
+           <% if (locals.weatherData) {
+              var date = utils.dateAndTime(weatherData.hourly.time[0]); %>
+              <div class="container"><div class="today"><h3><%= date.dayOfWeek %> &ensp; <%= date.date %></h3></div></div>
+              <div class="hourly-forecast">
+                <% for (let index = 0; index < weatherData.hourly.time.length; index++) { %>
+                  
+                    <div class="hourly-forecast-item">
+                      <p><%= utils.dateAndTime(weatherData.hourly.time[index]).time %></p>
+                      <p><%= weatherData.hourly.temperature_2m[index] %>°C</p>
+                    </div>
+                  
+                <% } %>
+                </div>            
             <% } else { %>
               <p>No weather data available.</p>
             <% } %>
