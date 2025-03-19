@@ -226,14 +226,14 @@ input[type="search"]::-webkit-search-results-decoration {
     justify-content: center;
     align-content: center;
     p {
-        font-size: 20px;
+        font-size: 15px;
         align-self: center;
-        margin-top: 5px;
+        margin-top: 15px;
     }
 }
 
 .weather-icon {
-    width: 30px;
+    width: 25px;
     margin-top: 5px;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -264,10 +264,23 @@ h3 {
     background-color: rgb(62, 135, 243);
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 10px;
     text-align: center;
     color: white;
+}
+
+.humidity-icon {
+    width: 25px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    align-self: flex-end;
 }
 
 @media (max-width: 1515px) {
@@ -288,6 +301,17 @@ h3 {
     }
     .today {
         width: 60%;
+    }   
+}
+
+@media (max-width: 500px) {
+    .hourly-forecast {
+      grid-template-columns: repeat(2, minmax(80px, 1fr));
     }
-    
+    .grid-container {
+        grid-template-columns: repeat(1, minmax(80px, 1fr));
+    }
+    .today {
+        width: 40%;
+    }
 }

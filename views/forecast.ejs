@@ -19,6 +19,30 @@
             </div>
           </div>
 
+          <div class="container">
+            <div class="side-info-bar">
+                <p><%= weatherData.hourly.temperature_2m[12] %>°C</p>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="side-info-bar">
+                <p><%= weatherData.hourly.windspeed_10m[12] %> km/h</p>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="side-info-bar">
+                <p><%= weatherData.hourly.visibility[12] %> m</p>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="side-info-bar">
+                <p><img src="images/humidity.png" alt="humidity-icon" class="humidity-icon"><%= weatherData.hourly.relative_humidity_2m[12] %> %</p>
+            </div>
+          </div>
+
         </div>
 
         <div class="sub-container">

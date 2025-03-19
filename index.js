@@ -32,8 +32,7 @@ app.post('/forecast', async (req, res) => {
     }
     try {
       const weatherData = await utils.getHourlyWeather(latitude, longitude);
-      const daysData = utils.processWeatherData(weatherData);
-      res.render("forecast.ejs", { city, daysData, weatherData, utils});
+      res.render("forecast.ejs", { city, weatherData, utils});
     } catch (error) {
       res.send("Error while fetching weather data.");
     }

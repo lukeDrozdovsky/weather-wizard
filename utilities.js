@@ -46,7 +46,7 @@ async function getHourlyWeather(latitude, longitude) {
         params: {
           latitude,
           longitude,
-          hourly: 'temperature_2m,precipitation,weather_code,windspeed_10m,visibility,winddirection_10m',
+          hourly: 'temperature_2m,precipitation,weather_code,windspeed_10m,visibility,winddirection_10m,relative_humidity_2m',
           forecast_days: 1,
           timezone: 'auto'
         }
@@ -56,62 +56,6 @@ async function getHourlyWeather(latitude, longitude) {
       console.error("Error while fetching weather data:", error);
       throw error;
     }
-}
-
-function processWeatherData(weatherData) {
-  const dateMap = {};
-
-  weatherData.hourly.time.forEach((timeString, index) => {
-    const parsed = dateAndTime(timeString); // { date, time, dayOfWeek }
-    const dateKey = parsed.date;           // np. "18-03-2025"
-
-    if (!dateMap[dateKey]) {
-      dateMap[dateKey] = {
-        dayOfWeek: parsed.dayOfWeek,
-        date: parsed.date,
-        hours: [],
-        sumTemp: 0,
-        count: 0
-      };
-    }
-
-    // Dodaj dane godzinowe do tablicy hours
-    dateMap[dateKey].hours.push({
-      time: parsed.time,
-      temperature: weatherData.hourly.temperature_2m[index]
-    });
-
-    // Zsumuj temperatury i zwiększ licznik, aby móc obliczyć średnią
-    dateMap[dateKey].sumTemp += weatherData.hourly.temperature_2m[index];
-    dateMap[dateKey].count++;
-  });
-
-  // Zamiana dateMap na posortowaną tablicę
-  const sortedDates = Object.keys(dateMap).sort((a, b) => {
-    // a i b to stringi w formacie "DD-MM-YYYY"
-    const [dayA, monthA, yearA] = a.split('-').map(Number);
-    const [dayB, monthB, yearB] = b.split('-').map(Number);
-
-    const dateA = new Date(yearA, monthA - 1, dayA);
-    const dateB = new Date(yearB, monthB - 1, dayB);
-
-    return dateA - dateB; // sort rosnący
-  });
-
-  // Tworzymy wynikową tablicę
-  const daysData = sortedDates.map(dateKey => {
-    const dayData = dateMap[dateKey];
-    const avgTemp = dayData.sumTemp / dayData.count;
-
-    return {
-      date: dayData.date,         // "18-03-2025"
-      dayOfWeek: dayData.dayOfWeek,
-      hours: dayData.hours,       // [{time, temperature}, ...]
-      avgTemp
-    };
-  });
-
-  return daysData;
 }
 
 function getWeatherDescription(code) {
@@ -177,4 +121,4 @@ function getWeatherDescription(code) {
   }
 }
 
-export { dateAndTime, getHourlyWeather, searchCity, processWeatherData, getWeatherDescription };
+export { dateAndTime, getHourlyWeather, searchCity, getWeatherDescription };
