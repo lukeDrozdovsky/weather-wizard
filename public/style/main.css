@@ -106,10 +106,16 @@ button:hover {
 }
 
 .grid-container {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 300px 1fr;
+    grid-template-rows: 1fr 1fr;
     
 }
+
+.full-width {
+    grid-column: 1 / -1;
+  }
 
 .container {
     display: flex;

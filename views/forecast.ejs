@@ -1,68 +1,103 @@
 <%- include("partials/header.ejs") %>
-<div class="grid-container">
     <div class="grid-container">
-
-        <div class="sub-container">
-          
-          <div class="container">
-            <div class="side-info-bar">
-              <h2><img src="images/location-pin.svg" class="location-pin" alt="location-pin"><%= city %></h2>
-            </div>
+    
+      <div class="sub-container">
+    
+        <div class="container">
+          <div class="side-info-bar">
+            <h2><img src="images/location-pin.svg" class="location-pin" alt="location-pin">
+              <%= city %>
+            </h2>
           </div>
-
-          <div class="container">
-            <div class="side-info-bar">
-              <% if (locals.weatherData) { %>
-                <p><img src="images/<%= utils.getWeatherDescription(weatherData.hourly.weather_code[0]).icon %>" class="weather-icon">
-                  <%= utils.getWeatherDescription(weatherData.hourly.weather_code[0]).description %></p>
+        </div>
+    
+        <div class="container">
+          <div class="side-info-bar">
+            <% if (locals.weatherData) { %>
+              <p><img src="images/<%= utils.getWeatherDescription(weatherData.hourly.weather_code[0]).icon %>"
+                  class="weather-icon">
+                <%= utils.getWeatherDescription(weatherData.hourly.weather_code[0]).description %>
+              </p>
               <% } %>
-            </div>
           </div>
-
-          <div class="container">
-            <div class="side-info-bar">
-                <p><%= weatherData.hourly.temperature_2m[12] %>°C</p>
-            </div>
-          </div>
-
-          <div class="container">
-            <div class="side-info-bar">
-                <p><%= weatherData.hourly.windspeed_10m[12] %> km/h</p>
-            </div>
-          </div>
-
-          <div class="container">
-            <div class="side-info-bar">
-                <p><%= weatherData.hourly.visibility[12] %> m</p>
-            </div>
-          </div>
-
-          <div class="container">
-            <div class="side-info-bar">
-                <p><img src="images/humidity.png" alt="humidity-icon" class="humidity-icon"><%= weatherData.hourly.relative_humidity_2m[12] %> %</p>
-            </div>
-          </div>
-
         </div>
-
-        <div class="sub-container">
-           <% if (locals.weatherData) {
-              var date = utils.dateAndTime(weatherData.hourly.time[0]); %>
-              <div class="container"><div class="today"><h3><%= date.dayOfWeek %> &ensp; <%= date.date %></h3></div></div>
-              <div class="hourly-forecast">
-                <% for (let index = 0; index < weatherData.hourly.time.length; index++) { %>
-                  
-                    <div class="hourly-forecast-item">
-                      <p><%= utils.dateAndTime(weatherData.hourly.time[index]).time %></p>
-                      <p><%= weatherData.hourly.temperature_2m[index] %>°C</p>
-                    </div>
-                  
-                <% } %>
-                </div>            
-            <% } else { %>
-              <p>No weather data available.</p>
+    
+        <div class="container">
+          <div class="side-info-bar">
+            <p>
+              Now: <%= weatherData.hourly.temperature_2m[12] %>°C
+            </p>
+          </div>
+        </div>
+    
+        <div class="container">
+          <div class="side-info-bar">
+            <p>Wind speed:<br/>
+              <%= weatherData.hourly.windspeed_10m[12] %> km/h
+            </p>
+          </div>
+        </div>
+    
+        <div class="container">
+          <div class="side-info-bar">
+            <p>Viewing distance:<br/>
+              <%= weatherData.hourly.visibility[12] %> m
+            </p>
+          </div>
+        </div>
+    
+        <div class="container">
+          <div class="side-info-bar">
+            <p><img src="images/humidity.png" alt="humidity-icon" class="humidity-icon">
+              <%= weatherData.hourly.relative_humidity_2m[12] %> %
+            </p>
+          </div>
+        </div>
+    
+      </div>
+    
+      <div class="sub-container">
+        <% if (locals.weatherData) { var date=utils.dateAndTime(weatherData.hourly.time[0]); %>
+    
+          <div class="container">
+            <div class="today">
+              <h3>
+                <%= date.dayOfWeek %> &ensp; <%= date.date %>
+              </h3>
+            </div>
+          </div>
+    
+          <div class="hourly-forecast">
+            <% for (let index=0; index < weatherData.hourly.time.length; index++) { %>
+    
+              <div class="hourly-forecast-item">
+                <p>
+                  <%= utils.dateAndTime(weatherData.hourly.time[index]).time %>
+                </p>
+                <p>
+                  <%= weatherData.hourly.temperature_2m[index] %>°C
+                </p>
+              </div>
+    
+              <% } %>
+          </div>
+          <% } else { %>
+            <p>No weather data available.</p>
             <% } %>
+      </div>
+    
+      <div class="sub-container full-width">
+        <div class="container">
+          <div class="today">
+            <h3>
+              Weather for the upcoming week
+            </h3>
         </div>
+      </div>
+    
     </div>
-</div>
+
+    
+
+
 <%- include("partials/footer.ejs") %>
